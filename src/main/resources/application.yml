@@ -1,22 +1,20 @@
 server:
   port: 90
-
-
 spring:
   elasticsearch:
     rest:
-      uris: 43.139.206.205:9200
+      uris: localhost:9200
   datasource:
     url: jdbc:mysql://localhost:3306/java-plateform?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: 217812.com
+    password: #数据库密码
   application:
     name: plate-from-app
   redis:
     port: 6379
-    password: 217812.com
-    host: 43.139.206.205
+    password: #redis密码
+    host: localhost
     lettuce:
       pool:
         max-idle: 38
@@ -25,17 +23,17 @@ spring:
         max-wait: -1
       shutdown-timeout: 320
   rabbitmq:
-    host: 43.139.206.205
+    host: localhost
     port: 5672
     username: admin
-    password: admin
+    password: #mq密码
 
 #邮箱发送验证码配置
 msm:
-  email: 2178127391@qq.com
+  email: #邮箱号
   host: smtp.qq.com
   port: 587
-  password: qrmkqrccuawpebii
+  password: #密码
 
 #文件上传配置
 fdfs:
@@ -44,10 +42,10 @@ fdfs:
   # 读取时间
   so-timeout: 30000
   # tracker服务配置地址列表
-  tracker-list: 43.139.206.205:22122
+  tracker-list: localhost:22122
 
 #阿里云
 aliyvn:
-  accesskeyId: LTAI5tRF5zmXhxzYP6SEmsFg
-  accesskeySecret: bGYVhdrhuJWAhAiVdwcastgLRqNB9Y
+  accesskeyId: #案例与keyID
+  accesskeySecret: #阿里云密钥
   endpoint: imageaudit.cn-shanghai.aliyuncs.com
