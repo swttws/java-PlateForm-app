@@ -31,8 +31,8 @@ public class Test4 {
         for (int i = 0; i < 500; i++) {
             Talk talk = new Talk();
             talk.setTitle(title[random.nextInt(title.length)]+t2[random.nextInt(t2.length)]+random.nextInt(100000));
-            talk.setContent("[{\"content\":\"14354555555555555555555555555555jav3443\",\"type\":\"text\"},{\"content\":\"http://43.139.206.205:8888/group1/M00/00/00/rBEAB2QBs1-AF7udAAFPNDsfH2E021.jpg\",\"type\":\"image\"}]");
-            talk.setImgUrl("http://43.139.206.205:8888/group1/M00/00/00/rBEAB2QBs2uATEmdAARMvmRme5w673.png");
+            talk.setContent("[{\"content\":\"14354555555555555555555555555555jav3443\",\"type\":\"text\"},{\"content\":\"http://43/group1/M00/00/00/rBEAB2QBs1-AF7udAAFPNDsfH2E021.jpg\",\"type\":\"image\"}]");
+            talk.setImgUrl("http://43.139.206.2/group1/M00/00/00/rBEAB2QBs2uATEmdAARMvmRme5w673.png");
             talk.setViewNum(random.nextInt(30000));
             talk.setPraiseNum(random.nextInt(1000));
             talk.setType(2);
