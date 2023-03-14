@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.su.mapper.TalkMapper">
+
+<!--    查询讨论-->
+    <select id="selectTalk" resultType="com.su.pojo.Talk" parameterType="java.lang.Integer">
+        select talk.* ,user.user_name,user.college,
+               subject.title subject_name
+        from talk
+                 inner join user on talk.user_id=user.id
+                 inner join subject on talk.subject_id = subject.id
+        where subject.parent_id=#{id}
+        order by talk.update_time DESC limit 0,5
+    </select>
+
+</mapper>
