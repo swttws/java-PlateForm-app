@@ -43,8 +43,8 @@ public class Test1 {
         // 如果您是用的子账号AccessKey，还需要为子账号授予权限AliyunVIAPIFullAccess，请参见：https://help.aliyun.com/document_detail/145025.html
         com.aliyun.imageaudit20191230.Client client =
                 Test1.createClient
-                        ("LTAI5tRF5zmXhxzYP6SEmsFg",
-                                "bGYVhdrhuJWAhAiVdwcastgLRqNB9Y");
+                        ("",
+                                "");
         ScanTextRequest.ScanTextRequestTasks tasks = new ScanTextRequest.ScanTextRequestTasks()
                 .setContent("12");
         tasks.setContent("毒品");
