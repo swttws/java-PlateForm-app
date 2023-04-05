@@ -23,6 +23,7 @@ import com.su.service.TalkService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.su.utils.CommonValueUtils;
 import com.su.utils.TrimUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.search.suggest.Suggest;
 import org.elasticsearch.search.suggest.SuggestBuilder;
@@ -57,6 +58,7 @@ import java.util.stream.Collectors;
  * @since 2023-02-26
  */
 @Service
+@Slf4j
 public class TalkServiceImp extends ServiceImpl<TalkMapper, Talk> implements TalkService {
 
     @Autowired
@@ -122,11 +124,25 @@ public class TalkServiceImp extends ServiceImpl<TalkMapper, Talk> implements Tal
         }
         //开启异步执行
         //文章数据内容检验
-        CompletableFuture<Boolean> contextWork=CompletableFuture
-                .supplyAsync(()->scanContent(contentViewList));
-        //图片内容检测
-        CompletableFuture<Boolean> imageWork=CompletableFuture
-                .supplyAsync(()->scanImage(contentViewList));
+        CompletableFuture<Boolean> contextWork= null;
+        CompletableFuture<Boolean> imageWork=null;
+        try {
+            contextWork = CompletableFuture
+                    .supplyAsync(()->scanContent(contentViewList))
+                    .exceptionally((e)->{
+                        log.info("文章内容检验异常");
+                        throw new RuntimeException("异常");
+                    });
+            //图片内容检测
+            imageWork=CompletableFuture
+                    .supplyAsync(()->scanImage(contentViewList))
+                    .exceptionally(e->{
+                        log.info("图片检测异常");
+                        throw new Errors("500","异常");
+                    });
+        } catch (Exception e) {
+            throw new Errors("500","服务器异常");
+        }
         //获取返回结果
         boolean scanContext = false;
         boolean scanImage = false;
