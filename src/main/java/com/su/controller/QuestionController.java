@@ -1,6 +1,7 @@
 package com.su.controller;
 
 
+import com.su.aop.Resubmit;
 import com.su.common.ResultBean;
 import com.su.service.QuestionService;
 import io.swagger.annotations.ApiOperation;
@@ -24,6 +25,7 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
+    @Resubmit //防止请求重复提交注解
     @ApiOperation("根据学科，难度组卷")
     @GetMapping("/getPaper/{subjectId}/{difficulty}/{userId}")
     public ResultBean getPaper(@PathVariable("subjectId") Integer subjectId,
