@@ -371,11 +371,12 @@ public class TalkServiceImp extends ServiceImpl<TalkMapper, Talk> implements Tal
                     redisTemplate.delete(CommonValueUtils.redisLock);
                 }
             }
-        }
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        }else{
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         //其他请求自旋本方法
         return getTalkList(subjectName);
